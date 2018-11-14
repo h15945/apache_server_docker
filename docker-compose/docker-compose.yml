@@ -1,0 +1,15 @@
+version: '2.1'
+services:
+  server:
+    image: docker.io/h15945/centos_server:latest
+    restart: always
+    ports:
+      - 20080:80
+    healthcheck:
+      test: ["CMD","/safe.sh"]
+      interval: 4s
+      timeout: 3s
+      retries: 2
+    command: sh /start.sh
+    volumes:
+      - ../bin/server/files:/var/www/html
